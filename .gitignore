@@ -294,3 +294,6 @@ dmypy.json
 *.mp3
 *.wav
 *.ogg
+
+# Local handoff/ops manual (machine-specific, do not commit)
+Handoff.md

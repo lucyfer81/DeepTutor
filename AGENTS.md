@@ -3,6 +3,7 @@
 用中文沟通
 用uv做python包管理。已经用uv创建了虚拟环境在.venv/bin
 如果要用curl 来做本机端口测试，需要用noproxy
+DeepTutor 排障/运维先读项目根目录 Handoff.md（机器特定配置与坑，不进 git）
 
 # DeepTutor — Agent-Native Architecture
 
