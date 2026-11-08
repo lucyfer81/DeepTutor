@@ -1,3 +1,9 @@
+# 个人开发守则
+
+用中文沟通
+用uv做python包管理。已经用uv创建了虚拟环境在.venv/bin
+如果要用curl 来做本机端口测试，需要用noproxy
+
 # DeepTutor — Agent-Native Architecture
 
 ## Overview
