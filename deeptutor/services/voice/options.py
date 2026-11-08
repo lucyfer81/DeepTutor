@@ -268,6 +268,22 @@ def voice_options(provider: str, service: str) -> dict:
             if provider == "volcengine_speech"
             else ""
         )
+        if provider == "whisper_cpp":
+            languages = choices(
+                ["auto", "zh", "en", "ja", "ko", "de", "fr", "es", "pt", "it", "ru", "ar"]
+            )
+            fallback = preset(
+                "",
+                languages=languages,
+                configuration_note=(
+                    "Runs the local whisper.cpp CLI; audio never leaves this machine "
+                    "and no API key is needed. Enter the full path to a whisper.cpp "
+                    "ggml *.bin model, or a model name such as 'small' resolved "
+                    "inside the whisper.cpp models directory (override with "
+                    "DEEPTUTOR_WHISPER_CPP_MODELS)."
+                ),
+            )
+            docs = "https://github.com/ggml-org/whisper.cpp"
     return {"models": models, "fallback": fallback, "docs_url": docs}
 
 

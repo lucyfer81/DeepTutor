@@ -12,6 +12,9 @@ page's "sync" button just re-reads it:
   catalog, then falls back to the terminal picker. Without a successful sync
   we offer version-neutral aliases; the UI also accepts a free-text model.
 * **Kimi CLI** has no model-list surface — free text only.
+* **pi** tabulates its configured models (``pi --list-models``); we read the
+  ``provider/model`` slugs straight off the fixed column table. Reasoning
+  effort is its ``--thinking`` scale.
 * **Grok CLI** keeps its account-specific CLI defaults, with free-text model
   and effort overrides (the human-readable ``grok models`` catalog is not parsed).
 * **opencode / MiMo Code** enumerate ``provider/model`` slugs via their own
@@ -30,6 +33,7 @@ from __future__ import annotations
 import asyncio
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
 import json
 import logging
 import os
@@ -84,6 +88,8 @@ _DEEPSEEK_HARNESS_EFFORTS = (
     "max",
     "ultra",
 )
+# pi: the `--thinking` scale.
+_PI_EFFORTS = ("off", "minimal", "low", "medium", "high", "xhigh", "max")
 
 
 @dataclass(slots=True)
@@ -283,6 +289,65 @@ async def _grok_options() -> BackendOptions:
     )
 
 
+async def _pi_models(cli_command: str) -> list[ModelOption]:
+    """Parse ``pi --list-models`` — a fixed column table, one model per row.
+
+    Columns are padded to width (provider, model, context, max-out, thinking,
+    images), so splitting on 2+ spaces yields the fields; the first row is the
+    header. Slugs are ``provider/model`` — the form pi's ``--model`` accepts.
+    """
+    cmd = resolve_cli_command([cli_command, "--list-models"])
+    try:
+        process = await asyncio.create_subprocess_exec(
+            *cmd,
+            stdin=asyncio.subprocess.DEVNULL,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.DEVNULL,
+        )
+        out, _ = await asyncio.wait_for(process.communicate(), timeout=20.0)
+    except FileNotFoundError:
+        return []
+    except (TimeoutError, asyncio.TimeoutError):
+        return []
+    except Exception:  # pragma: no cover - defensive
+        logger.warning("failed to enumerate %s models", cli_command, exc_info=True)
+        return []
+    models: list[ModelOption] = []
+    for raw in (out or b"").decode("utf-8", "replace").splitlines():
+        fields = re.split(r"\s{2,}", raw.strip())
+        if len(fields) != 6 or fields[0] == "provider":
+            continue  # header or decoration — not a model row
+        slug = f"{fields[0]}/{fields[1]}"
+        models.append(ModelOption(slug=slug, display_name=slug))
+    return models
+
+
+async def _pi_options() -> BackendOptions:
+    backend = get_backend("pi")
+    cli = backend.cli_command if backend else "pi"
+    ok, version = await _probe("pi")
+    models = await _pi_models(cli) if ok else []
+    # Unlike Codex/Claude Code (cache fetch times), every pi read is a live
+    # enumeration — so a successful read is itself the sync event the settings
+    # page's "last synced" line reports.
+    synced_at = (
+        datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+        if ok
+        else ""
+    )
+    return BackendOptions(
+        kind="pi",
+        display_name="Pi Coding Agent",
+        available=ok,
+        version=version if ok else "",
+        models=models,
+        efforts=list(_PI_EFFORTS),
+        allow_custom_model=True,
+        synced_at=synced_at,
+        detail="" if ok else (version or "pi CLI not found on PATH"),
+    )
+
+
 async def _list_cli_models(cli_command: str, *, refresh: bool = False) -> list[ModelOption]:
     """Parse ``<cli> models`` output — one ``provider/model`` slug per line."""
     cmd = [cli_command, "models"]
@@ -401,6 +466,7 @@ _PROVIDERS: dict[str, Callable[..., Awaitable[BackendOptions]]] = {
     "grok": _grok_options,
     "antigravity": _antigravity_options,
     "kimi": _kimi_options,
+    "pi": _pi_options,
     "opencode": _opencode_options,
     "mimo": _mimo_options,
     "hermes": _hermes_options,

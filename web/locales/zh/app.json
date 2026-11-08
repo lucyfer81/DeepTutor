@@ -22,6 +22,8 @@
   "Model and run params for the local Antigravity CLI.": "DeepTutor 调用本机 Antigravity CLI 时的模型与运行参数。",
   "Kimi CLI": "Kimi CLI",
   "Model and run params for the local Kimi CLI.": "DeepTutor 调用本机 Kimi CLI 时的模型与运行参数。",
+  "Pi Coding Agent": "Pi Coding Agent",
+  "Model and run params for the local Pi Coding Agent.": "DeepTutor 调用本机 Pi Coding Agent 时的模型与运行参数。",
   "opencode": "opencode",
   "Model, reasoning effort, and run params for the local opencode.": "DeepTutor 调用本机 opencode 时的模型、推理强度与运行参数。",
   "MiMo Code": "MiMo Code",

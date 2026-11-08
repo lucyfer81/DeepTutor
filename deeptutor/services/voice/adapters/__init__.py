@@ -23,6 +23,7 @@ from deeptutor.services.voice.adapters.openai_compat import (
     OpenRouterTTSAdapter,
 )
 from deeptutor.services.voice.adapters.volcengine import VolcengineSTTAdapter, VolcengineTTSAdapter
+from deeptutor.services.voice.adapters.whisper_cpp import WhisperCppSTTAdapter
 from deeptutor.services.voice.adapters.xai import XaiSTTAdapter, XaiTTSAdapter
 from deeptutor.services.voice.base import BaseSTTAdapter, BaseTTSAdapter, VoiceProviderError
 
@@ -45,6 +46,7 @@ STT_ADAPTERS: dict[str, BaseSTTAdapter] = {
     "dashscope": DashScopeSTTAdapter(),
     "mistral_stt": MistralSTTAdapter(),
     "xai_stt": XaiSTTAdapter(),
+    "whisper_cpp": WhisperCppSTTAdapter(),
 }
 
 
@@ -69,4 +71,5 @@ __all__ = [
     "get_stt_adapter",
     "DashScopeSTTAdapter",
     "DashScopeTTSAdapter",
+    "WhisperCppSTTAdapter",
 ]

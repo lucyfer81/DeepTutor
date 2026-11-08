@@ -205,6 +205,7 @@ const AGENTS = {
   "agent-grok": "grok",
   "agent-antigravity": "antigravity",
   "agent-kimi": "kimi",
+  "agent-pi": "pi",
   "agent-opencode": "opencode",
   "agent-mimo": "mimo",
   "agent-hermes": "hermes",

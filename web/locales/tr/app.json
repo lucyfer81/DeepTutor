@@ -6281,6 +6281,8 @@
   "Model and run params for the local Antigravity CLI.": "Yerel Antigravity CLI için model ve çalıştırma parametreleri.",
   "Kimi CLI": "Kimi CLI",
   "Model and run params for the local Kimi CLI.": "Yerel Kimi CLI için model ve çalıştırma parametreleri.",
+  "Pi Coding Agent": "Pi Coding Agent",
+  "Model and run params for the local Pi Coding Agent.": "Yerel Pi Coding Agent için model ve çalıştırma parametreleri.",
   "opencode": "opencode",
   "Model, reasoning effort, and run params for the local opencode.": "Yerel opencode için model, akıl yürütme düzeyi ve çalıştırma parametreleri.",
   "MiMo Code": "MiMo Code",

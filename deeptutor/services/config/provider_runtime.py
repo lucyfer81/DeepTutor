@@ -489,6 +489,16 @@ STT_PROVIDERS: dict[str, VoiceProviderSpec] = {
         default_model="",
         is_local=True,
     ),
+    # whisper.cpp CLI runs on the host; the ``model`` field points at a local
+    # ggml *.bin file (full path, or a name resolved inside the whisper.cpp
+    # models directory). Audio never leaves the machine and no key is needed.
+    "whisper_cpp": VoiceProviderSpec(
+        label="Local Whisper (whisper.cpp)",
+        default_api_base="",
+        adapter="whisper_cpp",
+        default_model="ggml-small-q5_1",
+        is_local=True,
+    ),
     "custom": VoiceProviderSpec(
         label="OpenAI Compatible",
         default_api_base="",

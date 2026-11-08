@@ -135,6 +135,28 @@ export function KimiGlyph({ size = 16, ...props }: GlyphProps) {
   );
 }
 
+// A neutral π glyph for the pi coding agent — no official mark to reproduce,
+// so (like Grok CLI's terminal glyph) it stays in currentColor and reads in
+// both light and dark agent menus.
+export function PiGlyph({ size = 16, ...props }: GlyphProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      {...props}
+    >
+      <path d="M5 8h14M7.5 8v9M16.5 8v8a2.5 2.5 0 0 0 2.5 2.5" />
+    </svg>
+  );
+}
+
 export function OpencodeGlyph({ size = 16, ...props }: GlyphProps) {
   return (
     <OfficialAssetGlyph
@@ -231,6 +253,7 @@ export function agentGlyph(kind: string | undefined): AgentGlyph | null {
   // Antigravity uses Google's Gemini mark, but Gemini CLI itself is retired.
   if (kind === "antigravity") return GeminiGlyph;
   if (kind === "kimi") return KimiGlyph;
+  if (kind === "pi") return PiGlyph;
   if (kind === "opencode") return OpencodeGlyph;
   if (kind === "mimo") return MimoGlyph;
   if (kind === "hermes") return HermesGlyph;
@@ -248,6 +271,7 @@ export function agentKindLabel(kind: string | undefined): string {
   if (kind === "grok") return "Grok CLI";
   if (kind === "antigravity") return "Antigravity CLI";
   if (kind === "kimi") return "Kimi CLI";
+  if (kind === "pi") return "Pi Coding Agent";
   if (kind === "opencode") return "opencode";
   if (kind === "mimo") return "MiMo Code";
   if (kind === "hermes") return "Hermes Agent";

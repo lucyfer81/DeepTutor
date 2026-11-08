@@ -936,6 +936,7 @@ async def test_detect_all_excludes_partner_backend() -> None:
         "grok",
         "antigravity",
         "kimi",
+        "pi",
         "opencode",
         "mimo",
         "hermes",

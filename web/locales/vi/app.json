@@ -6298,6 +6298,8 @@
   "Model and run params for the local Antigravity CLI.": "Mô hình và tham số chạy Antigravity CLI cục bộ.",
   "Kimi CLI": "Kimi CLI",
   "Model and run params for the local Kimi CLI.": "Mô hình và tham số chạy Kimi CLI cục bộ.",
+  "Pi Coding Agent": "Pi Coding Agent",
+  "Model and run params for the local Pi Coding Agent.": "Mô hình và tham số chạy Pi Coding Agent cục bộ.",
   "opencode": "opencode",
   "Model, reasoning effort, and run params for the local opencode.": "Mô hình, mức độ suy luận và tham số chạy opencode cục bộ.",
   "MiMo Code": "MiMo Code",

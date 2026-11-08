@@ -125,6 +125,15 @@ const KIND_FEATURES: Record<string, KindFeatures> = {
     thinking: true, // --thinking / --no-thinking
     forwardImages: false, // no headless image input
   },
+  pi: {
+    effort: true, // --thinking off…max
+    systemPrompt: true, // --append-system-prompt
+    permissionMode: false,
+    codexSandbox: false,
+    autoApprove: false, // json mode runs tools autonomously — nothing to approve
+    thinking: false, // reasoning always streams as thinking blocks
+    forwardImages: true, // @path references in the prompt
+  },
   opencode: {
     effort: true, // --variant
     systemPrompt: true,
@@ -188,6 +197,7 @@ const DISPLAY_NAMES: Record<string, string> = {
   codex: "Codex",
   grok: "Grok CLI",
   kimi: "Kimi CLI",
+  pi: "Pi Coding Agent",
   opencode: "opencode",
   mimo: "MiMo Code",
   hermes: "Hermes Agent",
@@ -210,6 +220,10 @@ const SYSTEM_PROMPT_HINT: Record<string, Lang> = {
   kimi: {
     zh: "Kimi CLI 没有系统提示 flag——该指令会前缀在每个新会话的第一条消息上。",
     en: "Kimi CLI has no system-prompt flag — the instruction is prefixed to each new session's first message.",
+  },
+  pi: {
+    zh: "追加到该智能体的系统提示（--append-system-prompt）。",
+    en: "Appended to the agent's system prompt (--append-system-prompt).",
   },
   opencode: {
     zh: "通过服务器 API 的 system 字段注入到每个新会话。",

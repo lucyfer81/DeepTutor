@@ -190,7 +190,7 @@ export interface KnowledgeBase {
     server_url?: string;
     zim_name?: string;
     zim_title?: string;
-    /** Backend of a connected subagent (when type === "subagent"): "claude_code" | "codex" | "antigravity" | "kimi" | "opencode" | "mimo" | "hermes" | "openclaw" | "deepseek_harness" | "partner". */
+    /** Backend of a connected subagent (when type === "subagent"): "claude_code" | "codex" | "antigravity" | "kimi" | "pi" | "opencode" | "mimo" | "hermes" | "openclaw" | "deepseek_harness" | "partner". */
     agent_kind?: string;
     /** Bound partner id when agent_kind === "partner". */
     partner_id?: string;

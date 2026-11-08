@@ -15,6 +15,7 @@ const HARNESSES = [
     route: "deepseek-harness",
     label: "DeepSeek Harness",
   },
+  { kind: "pi", route: "pi", label: "Pi Coding Agent" },
 ] as const;
 
 test("new harnesses are present in connected-agent labels and glyph dispatch", () => {

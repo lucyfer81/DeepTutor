@@ -22,6 +22,8 @@
   "Model and run params for the local Antigravity CLI.": "Model and run params for the local Antigravity CLI.",
   "Kimi CLI": "Kimi CLI",
   "Model and run params for the local Kimi CLI.": "Model and run params for the local Kimi CLI.",
+  "Pi Coding Agent": "Pi Coding Agent",
+  "Model and run params for the local Pi Coding Agent.": "Model and run params for the local Pi Coding Agent.",
   "opencode": "opencode",
   "Model, reasoning effort, and run params for the local opencode.": "Model, reasoning effort, and run params for the local opencode.",
   "MiMo Code": "MiMo Code",

@@ -45,7 +45,7 @@ class BackendConfig:
     effort: str = ""
     # Instruction injected so the agent knows it's being consulted
     # programmatically (be concise, self-contained, don't ask follow-ups).
-    # CC: --append-system-prompt. Empty = none.
+    # CC / pi: --append-system-prompt. Empty = none.
     system_prompt: str = ""
     # Claude Code / Grok CLI: --permission-mode. Grok defaults to "dontAsk"
     # through default_backend_config. Claude's "bypassPermissions" never stalls and
@@ -70,9 +70,10 @@ class BackendConfig:
     # opencode family always streams reasoning over its event bus.
     thinking: bool = True
     # Forward image attachments from the chat turn to the agent (CC image input
-    # / Codex -i / Hermes --image / opencode-family file parts).
-    # Off by default — the user opts in per backend. Kimi has no headless image
-    # input; OpenClaw and DeepSeek receive opted-in paths as file references.
+    # / Codex -i / Hermes --image / opencode-family file parts). Off by default
+    # — the user opts in per backend. Kimi has no headless image input; pi
+    # receives opted-in paths as @path prompt references; OpenClaw and DeepSeek
+    # receive them as file references.
     forward_images: bool = False
     extra_args: list[str] = field(default_factory=list)
     # Remote Hermes gateway connection. Credentials stay in the environment;
