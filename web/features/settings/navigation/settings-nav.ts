@@ -312,11 +312,8 @@ const AGENT_CHILDREN: SettingsLeaf[] = [
   {
     key: "agent-pi",
     href: "/settings#agent-pi",
-    label: { zh: "Pi Coding Agent", en: "Pi Coding Agent" },
-    blurb: {
-      zh: "DeepTutor 调用本机 Pi Coding Agent 时的模型与运行参数。",
-      en: "Model and run params for the local Pi Coding Agent.",
-    },
+    label: "Pi Coding Agent",
+    blurb: "Model and run params for the local Pi Coding Agent.",
     icon: PiGlyph as unknown as LucideIcon,
     tile: "bg-teal-500/10 text-teal-600 dark:text-teal-400",
     adminOnly: true,
